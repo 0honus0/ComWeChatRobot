@@ -151,6 +151,9 @@
     <Filter Include="发送消息\发送表情">
       <UniqueIdentifier>{63a49bf5-1537-4fb1-be9a-acecc57ca98c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="登录相关\获取登陆二维码链接">
+      <UniqueIdentifier>{14b147a7-7e7c-4658-986b-2a787d353cfb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -290,6 +293,12 @@
     </ClInclude>
     <ClInclude Include="SendEmotion.h">
       <Filter>发送消息\发送表情</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>通用标头</Filter>
+    </ClInclude>
+    <ClInclude Include="GetQrcodeUrl.h">
+      <Filter>登录相关\获取登陆二维码链接</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -440,5 +449,13 @@
     <ClCompile Include="ChatMsg.cpp">
       <Filter>接收消息</Filter>
     </ClCompile>
+    <ClCompile Include="GetQrcodeUrl.cpp">
+      <Filter>登录相关\获取登陆二维码链接</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DWeChatRobot.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

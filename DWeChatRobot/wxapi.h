@@ -38,12 +38,13 @@
 #include "Logout.h"
 #include "GetTransfer.h"
 #include "SendEmotion.h"
+#include "GetQrCodeUrl.h"
 
 using namespace std;
 #pragma comment(lib, "version.lib")
 #pragma comment(lib, "ws2_32.lib")
 #pragma warning(disable : 4731 26812)
-// ¶ÔÓÚµ¼³öº¯Êı£¬ĞèÒªÊ¹ÓÃ´ËºêĞŞÊÎ
+// å¯¹äºå¯¼å‡ºå‡½æ•°ï¼Œéœ€è¦ä½¿ç”¨æ­¤å®ä¿®é¥°
 #define DLLEXPORT extern "C" __declspec(dllexport)
 
 BOOL CreateConsole(void);

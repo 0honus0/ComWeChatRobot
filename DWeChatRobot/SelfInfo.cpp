@@ -2,13 +2,13 @@
 #include "json/json.hpp"
 using namespace nlohmann;
 
-// ¸öÈËWXIDÆ«ÒÆ
+// ä¸ªäººWXIDåç§»
 #define SelfWxidAddrOffset 0x236607C
 
 /*
- * Íâ²¿µ÷ÓÃÊ±µÄ·µ»ØÀàĞÍ
- * message£ºselfinfo.c_str()
- * length£ºselfinfo×Ö·û´®³¤¶È
+ * å¤–éƒ¨è°ƒç”¨æ—¶çš„è¿”å›ç±»å‹
+ * messageï¼šselfinfo.c_str()
+ * lengthï¼šselfinfoå­—ç¬¦ä¸²é•¿åº¦
  */
 #ifndef USE_SOCKET
 struct SelfInfoStruct
@@ -19,8 +19,8 @@ struct SelfInfoStruct
 #endif // !USE_SOCKET
 
 /*
- * ¹©Íâ²¿µ÷ÓÃµÄ»ñÈ¡¸öÈËĞÅÏ¢½Ó¿Ú
- * return£ºDWORD£¬retµÄÊ×µØÖ·
+ * ä¾›å¤–éƒ¨è°ƒç”¨çš„è·å–ä¸ªäººä¿¡æ¯æ¥å£
+ * returnï¼šDWORDï¼Œretçš„é¦–åœ°å€
  */
 #ifndef USE_SOCKET
 DWORD GetSelfInfoRemote()
@@ -51,12 +51,12 @@ wstring GetSelfWxid()
 }
 
 /*
- * »ñÈ¡¸öÈËĞÅÏ¢
+ * è·å–ä¸ªäººä¿¡æ¯
  */
 wstring GetSelfInfo()
 {
     if (!isWxLogin())
-        return L"ÇëÏÈµÇÂ¼Î¢ĞÅ.";
+        return L"è¯·å…ˆç™»å½•å¾®ä¿¡.";
     json jData;
     map<string, DWORD> self_info_addr;
     DWORD WeChatWinBase = GetWeChatWinBase();
@@ -81,7 +81,7 @@ wstring GetSelfInfo()
         if (key == "Sex")
         {
             int sex = *(int *)addr;
-            utf8_str = gb2312_to_utf8(((sex == 1) ? "ÄĞ" : ((sex == 2) ? "Å®" : "Î´Öª")));
+            utf8_str = gb2312_to_utf8(((sex == 1) ? "ç”·" : ((sex == 2) ? "å¥³" : "æœªçŸ¥")));
         }
         else if (key == "wxFilePath")
         {
@@ -114,8 +114,8 @@ wstring GetSelfInfo()
 }
 
 /*
- * É¾³ı¸öÈËĞÅÏ¢»º´æ
- * return£ºvoid
+ * åˆ é™¤ä¸ªäººä¿¡æ¯ç¼“å­˜
+ * returnï¼švoid
  */
 #ifndef USE_SOCKET
 VOID DeleteSelfInfoCacheRemote()

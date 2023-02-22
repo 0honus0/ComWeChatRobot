@@ -164,7 +164,7 @@ static vector<wstring> get_http_param_array(mg_http_message *hm, json jData, str
 void request_event(mg_http_message *hm, string &ret, struct mg_connection *c)
 {
     int method = I_METHOD(getMgStrA(hm->method));
-    // µÚËÄ¸ö²ÎÊýÉèÖÃÎªfalse£¬²»Å×³öÒì³£
+    // ç¬¬å››ä¸ªå‚æ•°è®¾ç½®ä¸ºfalseï¼Œä¸æŠ›å‡ºå¼‚å¸¸
     json jData = json::parse(hm->body.ptr, hm->body.ptr + hm->body.len, nullptr, false);
     if (hm->body.len != 0 && jData.is_discarded() == true && method == HTTP_METHOD_POST)
     {
@@ -589,9 +589,9 @@ void request_event(mg_http_message *hm, string &ret, struct mg_connection *c)
         {
             string message;
             if (isWxLogin())
-                message = "»ñÈ¡Ê§°Ü£¬Î¢ÐÅÒÑµÇÂ¼.";
+                message = "èŽ·å–å¤±è´¥ï¼Œå¾®ä¿¡å·²ç™»å½•.";
             else
-                message = "»ñÈ¡Ê§°Ü.";
+                message = "èŽ·å–å¤±è´¥.";
             json ret_data = {{"msg", gb2312_to_utf8(message.c_str())}, {"result", "OK"}};
             ret = ret_data.dump();
         }
@@ -657,6 +657,14 @@ void request_event(mg_http_message *hm, string &ret, struct mg_connection *c)
         }
         break;
     }
+    case WECHAT_GET_LOGIN_URL:
+    {
+        wstring url;
+        url = GetQrcodeUrl();
+        json ret_data = {{"result", "OK"} , {"url", unicode_to_utf8(WS2LW(url))}};
+        ret = ret_data.dump();
+        break;
+    }
     default:
         // char* wxid = mg_json_get_str(hm->body, "$.wxid");
         break;
@@ -714,7 +722,7 @@ static void fn(struct mg_connection *c, int ev, void *ev_data, void *fn_data)
 
 void http_poll(int port)
 {
-    mg_log_set("2");
+    mg_log_set((int)"2");
     mg_mgr_init(&mgr);
     string s_http_addr = "http://0.0.0.0:" + to_string(port);
     mg_http_listen(&mgr, s_http_addr.c_str(), fn, NULL);

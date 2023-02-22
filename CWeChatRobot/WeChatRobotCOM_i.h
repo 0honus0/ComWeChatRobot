@@ -3,11 +3,11 @@
 /* this ALWAYS GENERATED file contains the definitions for the interfaces */
 
 
- /* File created by MIDL compiler version 8.01.0622 */
+ /* File created by MIDL compiler version 8.01.0626 */
 /* at Tue Jan 19 11:14:07 2038
  */
 /* Compiler settings for WeChatRobotCOM.idl:
-    Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.01.0622 
+    Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.01.0626 
     protocol : dce , ms_ext, c_ext, robust
     error checks: allocation ref bounds_check enum stub_data 
     VC __declspec() decoration level: 
@@ -40,6 +40,14 @@
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
 #pragma once
+#endif
+
+#ifndef DECLSPEC_XFGVIRT
+#if _CONTROL_FLOW_GUARD_XFG
+#define DECLSPEC_XFGVIRT(base, func) __declspec(xfg_virtual(base, func))
+#else
+#define DECLSPEC_XFGVIRT(base, func)
+#endif
 #endif
 
 /* Forward Declarations */ 
@@ -398,28 +406,34 @@ EXTERN_C const IID IID_IWeChatRobot;
     {
         BEGIN_INTERFACE
         
+        DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             IWeChatRobot * This,
             /* [in] */ REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
+        DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             IWeChatRobot * This);
         
+        DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
             IWeChatRobot * This);
         
+        DECLSPEC_XFGVIRT(IDispatch, GetTypeInfoCount)
         HRESULT ( STDMETHODCALLTYPE *GetTypeInfoCount )( 
             IWeChatRobot * This,
             /* [out] */ UINT *pctinfo);
         
+        DECLSPEC_XFGVIRT(IDispatch, GetTypeInfo)
         HRESULT ( STDMETHODCALLTYPE *GetTypeInfo )( 
             IWeChatRobot * This,
             /* [in] */ UINT iTInfo,
             /* [in] */ LCID lcid,
             /* [out] */ ITypeInfo **ppTInfo);
         
+        DECLSPEC_XFGVIRT(IDispatch, GetIDsOfNames)
         HRESULT ( STDMETHODCALLTYPE *GetIDsOfNames )( 
             IWeChatRobot * This,
             /* [in] */ REFIID riid,
@@ -428,6 +442,7 @@ EXTERN_C const IID IID_IWeChatRobot;
             /* [in] */ LCID lcid,
             /* [size_is][out] */ DISPID *rgDispId);
         
+        DECLSPEC_XFGVIRT(IDispatch, Invoke)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
             IWeChatRobot * This,
             /* [annotation][in] */ 
@@ -447,16 +462,19 @@ EXTERN_C const IID IID_IWeChatRobot;
             /* [annotation][out] */ 
             _Out_opt_  UINT *puArgErr);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CStartRobotService)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CStartRobotService )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CStopRobotService)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CStopRobotService )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CSendText)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CSendText )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
@@ -464,6 +482,7 @@ EXTERN_C const IID IID_IWeChatRobot;
             /* [in] */ BSTR wxmsg,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CSendImage)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CSendImage )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
@@ -471,6 +490,7 @@ EXTERN_C const IID IID_IWeChatRobot;
             /* [in] */ BSTR imagepath,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CSendFile)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CSendFile )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
@@ -478,6 +498,7 @@ EXTERN_C const IID IID_IWeChatRobot;
             /* [in] */ BSTR filepath,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CSendArticle)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CSendArticle )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
@@ -488,6 +509,7 @@ EXTERN_C const IID IID_IWeChatRobot;
             /* [in] */ BSTR imgpath,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CSendCard)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CSendCard )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
@@ -496,48 +518,57 @@ EXTERN_C const IID IID_IWeChatRobot;
             /* [in] */ BSTR nickname,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CGetFriendList)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CGetFriendList )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
             /* [retval][out] */ VARIANT *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CGetFriendListString)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CGetFriendListString )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
             /* [retval][out] */ BSTR *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CGetWxUserInfo)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CGetWxUserInfo )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
             /* [in] */ BSTR wxid,
             /* [retval][out] */ BSTR *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CGetSelfInfo)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CGetSelfInfo )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
             /* [retval][out] */ BSTR *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CCheckFriendStatus)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CCheckFriendStatus )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
             /* [in] */ BSTR wxid,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CGetComWorkPath)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CGetComWorkPath )( 
             IWeChatRobot * This,
             /* [retval][out] */ BSTR *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CStartReceiveMessage)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CStartReceiveMessage )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
             /* [in] */ int port,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CStopReceiveMessage)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CStopReceiveMessage )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CSendAtText)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CSendAtText )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
@@ -547,17 +578,20 @@ EXTERN_C const IID IID_IWeChatRobot;
             /* [in] */ BOOL AutoNickName,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CGetChatRoomMembers)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CGetChatRoomMembers )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
             /* [in] */ BSTR chatroomid,
             /* [retval][out] */ VARIANT *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CGetDbHandles)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CGetDbHandles )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
             /* [retval][out] */ VARIANT *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CExecuteSQL)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CExecuteSQL )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
@@ -565,6 +599,7 @@ EXTERN_C const IID IID_IWeChatRobot;
             /* [in] */ BSTR sql,
             /* [retval][out] */ VARIANT *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CBackupSQLiteDB)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CBackupSQLiteDB )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
@@ -572,6 +607,7 @@ EXTERN_C const IID IID_IWeChatRobot;
             /* [in] */ BSTR savepath,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CVerifyFriendApply)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CVerifyFriendApply )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
@@ -579,6 +615,7 @@ EXTERN_C const IID IID_IWeChatRobot;
             /* [in] */ BSTR v4,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CAddFriendByWxid)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CAddFriendByWxid )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
@@ -586,6 +623,7 @@ EXTERN_C const IID IID_IWeChatRobot;
             /* [in] */ BSTR message,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CAddFriendByV3)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CAddFriendByV3 )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
@@ -594,54 +632,64 @@ EXTERN_C const IID IID_IWeChatRobot;
             /* [in] */ int AddType,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CGetWeChatVer)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CGetWeChatVer )( 
             IWeChatRobot * This,
             /* [retval][out] */ BSTR *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CStartWeChat)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CStartWeChat )( 
             IWeChatRobot * This,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CSearchContactByNet)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CSearchContactByNet )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
             /* [in] */ BSTR keyword,
             /* [retval][out] */ VARIANT *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CAddBrandContact)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CAddBrandContact )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
             /* [in] */ BSTR PublicId,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CHookVoiceMsg)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CHookVoiceMsg )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
             /* [in] */ BSTR savepath,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CUnHookVoiceMsg)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CUnHookVoiceMsg )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CHookImageMsg)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CHookImageMsg )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
             /* [in] */ BSTR savepath,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CUnHookImageMsg)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CUnHookImageMsg )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CChangeWeChatVer)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CChangeWeChatVer )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
             /* [in] */ BSTR verStr,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CSendAppMsg)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CSendAppMsg )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
@@ -649,17 +697,20 @@ EXTERN_C const IID IID_IWeChatRobot;
             /* [in] */ BSTR appid,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CDeleteUser)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CDeleteUser )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
             /* [in] */ BSTR wxid,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CIsWxLogin)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CIsWxLogin )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CEditRemark)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CEditRemark )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
@@ -667,6 +718,7 @@ EXTERN_C const IID IID_IWeChatRobot;
             /* [in] */ BSTR remark,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CSetChatRoomName)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CSetChatRoomName )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
@@ -674,6 +726,7 @@ EXTERN_C const IID IID_IWeChatRobot;
             /* [in] */ BSTR name,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CSetChatRoomAnnouncement)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CSetChatRoomAnnouncement )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
@@ -681,6 +734,7 @@ EXTERN_C const IID IID_IWeChatRobot;
             /* [in] */ BSTR announcement,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CSetChatRoomSelfNickname)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CSetChatRoomSelfNickname )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
@@ -688,6 +742,7 @@ EXTERN_C const IID IID_IWeChatRobot;
             /* [in] */ BSTR nickname,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CGetChatRoomMemberNickname)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CGetChatRoomMemberNickname )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
@@ -695,6 +750,7 @@ EXTERN_C const IID IID_IWeChatRobot;
             /* [in] */ BSTR wxid,
             /* [retval][out] */ BSTR *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CDelChatRoomMember)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CDelChatRoomMember )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
@@ -702,6 +758,7 @@ EXTERN_C const IID IID_IWeChatRobot;
             /* [in] */ VARIANT *wxids,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CAddChatRoomMember)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CAddChatRoomMember )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
@@ -709,12 +766,14 @@ EXTERN_C const IID IID_IWeChatRobot;
             /* [in] */ VARIANT *wxids,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, COpenBrowser)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *COpenBrowser )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
             /* [in] */ BSTR url,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CGetHistoryPublicMsg)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CGetHistoryPublicMsg )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
@@ -722,6 +781,7 @@ EXTERN_C const IID IID_IWeChatRobot;
             /* [in] */ BSTR Offset,
             /* [retval][out] */ VARIANT *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CForwardMessage)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CForwardMessage )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
@@ -729,17 +789,20 @@ EXTERN_C const IID IID_IWeChatRobot;
             /* [in] */ unsigned long long localId,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CGetQrcodeImage)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CGetQrcodeImage )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
             /* [retval][out] */ VARIANT *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CGetA8Key)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CGetA8Key )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
             /* [in] */ BSTR url,
             /* [retval][out] */ BSTR *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CSendXmlMsg)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CSendXmlMsg )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
@@ -748,11 +811,13 @@ EXTERN_C const IID IID_IWeChatRobot;
             /* [in] */ BSTR imgpath,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CLogout)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CLogout )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CGetTransfer)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CGetTransfer )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
@@ -761,6 +826,7 @@ EXTERN_C const IID IID_IWeChatRobot;
             /* [in] */ BSTR transferid,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CSendEmotion)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CSendEmotion )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
@@ -768,6 +834,7 @@ EXTERN_C const IID IID_IWeChatRobot;
             /* [in] */ BSTR img_path,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IWeChatRobot, CGetMsgCDN)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CGetMsgCDN )( 
             IWeChatRobot * This,
             /* [in] */ DWORD pid,
@@ -1013,28 +1080,34 @@ EXTERN_C const IID IID_IRobotEvent;
     {
         BEGIN_INTERFACE
         
+        DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             IRobotEvent * This,
             /* [in] */ REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
+        DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             IRobotEvent * This);
         
+        DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
             IRobotEvent * This);
         
+        DECLSPEC_XFGVIRT(IDispatch, GetTypeInfoCount)
         HRESULT ( STDMETHODCALLTYPE *GetTypeInfoCount )( 
             IRobotEvent * This,
             /* [out] */ UINT *pctinfo);
         
+        DECLSPEC_XFGVIRT(IDispatch, GetTypeInfo)
         HRESULT ( STDMETHODCALLTYPE *GetTypeInfo )( 
             IRobotEvent * This,
             /* [in] */ UINT iTInfo,
             /* [in] */ LCID lcid,
             /* [out] */ ITypeInfo **ppTInfo);
         
+        DECLSPEC_XFGVIRT(IDispatch, GetIDsOfNames)
         HRESULT ( STDMETHODCALLTYPE *GetIDsOfNames )( 
             IRobotEvent * This,
             /* [in] */ REFIID riid,
@@ -1043,6 +1116,7 @@ EXTERN_C const IID IID_IRobotEvent;
             /* [in] */ LCID lcid,
             /* [size_is][out] */ DISPID *rgDispId);
         
+        DECLSPEC_XFGVIRT(IDispatch, Invoke)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
             IRobotEvent * This,
             /* [annotation][in] */ 
@@ -1062,6 +1136,7 @@ EXTERN_C const IID IID_IRobotEvent;
             /* [annotation][out] */ 
             _Out_opt_  UINT *puArgErr);
         
+        DECLSPEC_XFGVIRT(IRobotEvent, CPostMessage)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CPostMessage )( 
             IRobotEvent * This,
             /* [in] */ DWORD pid,
@@ -1070,6 +1145,7 @@ EXTERN_C const IID IID_IRobotEvent;
             /* [in] */ VARIANT *msg,
             /* [retval][out] */ int *__result);
         
+        DECLSPEC_XFGVIRT(IRobotEvent, CRegisterWxPidWithCookie)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *CRegisterWxPidWithCookie )( 
             IRobotEvent * This,
             /* [in] */ DWORD pid,
@@ -1169,28 +1245,34 @@ EXTERN_C const IID DIID__IRobotEventEvents;
     {
         BEGIN_INTERFACE
         
+        DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             _IRobotEventEvents * This,
             /* [in] */ REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
+        DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             _IRobotEventEvents * This);
         
+        DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
             _IRobotEventEvents * This);
         
+        DECLSPEC_XFGVIRT(IDispatch, GetTypeInfoCount)
         HRESULT ( STDMETHODCALLTYPE *GetTypeInfoCount )( 
             _IRobotEventEvents * This,
             /* [out] */ UINT *pctinfo);
         
+        DECLSPEC_XFGVIRT(IDispatch, GetTypeInfo)
         HRESULT ( STDMETHODCALLTYPE *GetTypeInfo )( 
             _IRobotEventEvents * This,
             /* [in] */ UINT iTInfo,
             /* [in] */ LCID lcid,
             /* [out] */ ITypeInfo **ppTInfo);
         
+        DECLSPEC_XFGVIRT(IDispatch, GetIDsOfNames)
         HRESULT ( STDMETHODCALLTYPE *GetIDsOfNames )( 
             _IRobotEventEvents * This,
             /* [in] */ REFIID riid,
@@ -1199,6 +1281,7 @@ EXTERN_C const IID DIID__IRobotEventEvents;
             /* [in] */ LCID lcid,
             /* [size_is][out] */ DISPID *rgDispId);
         
+        DECLSPEC_XFGVIRT(IDispatch, Invoke)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
             _IRobotEventEvents * This,
             /* [annotation][in] */ 

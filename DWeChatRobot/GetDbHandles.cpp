@@ -1,27 +1,27 @@
 #include "pch.h"
 
-// ÁªÏµÈËÏà¹Ø¿âÆ«ÒÆ
+// è”ç³»äººç›¸å…³åº“åç§»
 #define SqlHandleMicroMsgOffset 0x2366934
-// ¹«ÖÚºÅÏà¹Ø¿âÆ«ÒÆ
+// å…¬ä¼—å·ç›¸å…³åº“åç§»
 #define SqlHandlePublicMsgOffset 0x239E3C8
-// ÁÄÌì¼ÇÂ¼Ïà¹Ø¿âÆ«ÒÆ
+// èŠå¤©è®°å½•ç›¸å…³åº“åç§»
 #define SqlHandleMSGOffset 0x239FF68
-// ÆóÒµÎ¢ĞÅÏà¹Ø¿âÆ«ÒÆ
+// ä¼ä¸šå¾®ä¿¡ç›¸å…³åº“åç§»
 #define SqlHandleOpenIMOffset1 0x239E6E0
 #define SqlHandleOpenIMOffset2 0x239FF6C
-// ÅóÓÑÈ¦Êı¾İ¿âÆ«ÒÆ
+// æœ‹å‹åœˆæ•°æ®åº“åç§»
 #define SqlHandleSnsOffset 0x23A1744
-// ÊÕ²ØÊı¾İ¿âÆ«ÒÆ
+// æ”¶è—æ•°æ®åº“åç§»
 #define SqlHandleFavoriteOffset 0x23A03B0
 
-// ±£´æÊı¾İ¿âĞÅÏ¢µÄÈİÆ÷
+// ä¿å­˜æ•°æ®åº“ä¿¡æ¯çš„å®¹å™¨
 vector<DbInfoStruct> dbs;
 map<wstring, DbInfoStruct> dbmap;
 
 /*
- * ¸ù¾İÊı¾İ¿âÃû´Ó`dbmap`ÖĞ¼ìË÷Êı¾İ¿â¾ä±ú
- * dbname£ºÊı¾İ¿âÃû
- * return£ºDWORD£¬Èç¹û¼ìË÷³É¹¦£¬·µ»ØÊı¾İ¿â¾ä±ú£¬·ñÔò·µ»Ø`0`
+ * æ ¹æ®æ•°æ®åº“åä»`dbmap`ä¸­æ£€ç´¢æ•°æ®åº“å¥æŸ„
+ * dbnameï¼šæ•°æ®åº“å
+ * returnï¼šDWORDï¼Œå¦‚æœæ£€ç´¢æˆåŠŸï¼Œè¿”å›æ•°æ®åº“å¥æŸ„ï¼Œå¦åˆ™è¿”å›`0`
  */
 DWORD GetDbHandleByDbName(wchar_t *dbname)
 {
@@ -53,8 +53,8 @@ unsigned int GetLocalIdByMsgId(ULONG64 msgid, int &dbIndex)
 }
 
 /*
- * ¹©Íâ²¿µ÷ÓÃµÄ»ñÈ¡Êı¾İ¿âĞÅÏ¢½Ó¿Ú
- * return£ºDWORD£¬`dbs`Ê×¸ö³ÉÔ±µØÖ·
+ * ä¾›å¤–éƒ¨è°ƒç”¨çš„è·å–æ•°æ®åº“ä¿¡æ¯æ¥å£
+ * returnï¼šDWORDï¼Œ`dbs`é¦–ä¸ªæˆå‘˜åœ°å€
  */
 #ifndef USE_SOCKET
 DWORD GetDbHandlesRemote()
@@ -66,8 +66,8 @@ DWORD GetDbHandlesRemote()
 #endif
 
 /*
- * »ñÈ¡Êı¾İ¿âĞÅÏ¢µÄ¾ßÌåÊµÏÖ
- * return£ºvoid
+ * è·å–æ•°æ®åº“ä¿¡æ¯çš„å…·ä½“å®ç°
+ * returnï¼švoid
  */
 vector<void *> GetDbHandles()
 {
@@ -85,7 +85,7 @@ vector<void *> GetDbHandles()
     DWORD SqlHandleFavoriteAddr = *(DWORD *)(WeChatWinBase + SqlHandleFavoriteOffset);
     vector<DWORD> dbaddrs;
     DWORD dwHandle = 0x0;
-    // »ñÈ¡ÁªÏµÈËÊı¾İ¿â¾ä±ú
+    // è·å–è”ç³»äººæ•°æ®åº“å¥æŸ„
     while (SqlHandleBeginAddr < SqlHandleEndAddr)
     {
         dwHandle = *(DWORD *)SqlHandleBeginAddr;
@@ -94,13 +94,13 @@ vector<void *> GetDbHandles()
         if (SqlHandleBeginAddr == SqlHandleEndAddr)
             break;
     }
-    // »ñÈ¡¹«ÖÚºÅÊı¾İ¿â¾ä±ú
+    // è·å–å…¬ä¼—å·æ•°æ®åº“å¥æŸ„
     for (int i = 1; i < 4; i++)
     {
         dwHandle = *((DWORD *)(SqlHandlePublicMsgAddr + i * 0x4));
         dbaddrs.push_back(dwHandle);
     }
-    // »ñÈ¡ÁÄÌì¼ÇÂ¼Êı¾İ¿â¾ä±ú
+    // è·å–èŠå¤©è®°å½•æ•°æ®åº“å¥æŸ„
     int msgdb_count = *(int *)(SqlHandleMSGAddr + 0x4);
     DWORD MsgdwHandle = *(DWORD *)(SqlHandleMSGAddr + 0x1C);
     for (int i = 0; i < msgdb_count; i++)
@@ -112,19 +112,19 @@ vector<void *> GetDbHandles()
         }
         MsgdwHandle += 0x68;
     }
-    // »ñÈ¡ÆóÒµÎ¢ĞÅÊı¾İ¿â¾ä±ú
+    // è·å–ä¼ä¸šå¾®ä¿¡æ•°æ®åº“å¥æŸ„
     dbaddrs.push_back(*(DWORD *)(SqlHandleOpenIMAddr1 + 0x8));
     for (int i = 0; i < 3; i++)
     {
         dwHandle = *(DWORD *)(SqlHandleOpenIMAddr2 + 0xC + i * 4);
         dbaddrs.push_back(dwHandle);
     }
-    // »ñÈ¡ÅóÓÑÈ¦Êı¾İ¿â¾ä±ú
+    // è·å–æœ‹å‹åœˆæ•°æ®åº“å¥æŸ„
     dbaddrs.push_back(*(DWORD *)(SqlHandleSnsAddr + 0x64));
-    // »ñÈ¡ÊÕ²ØÊı¾İ¿â¾ä±ú
+    // è·å–æ”¶è—æ•°æ®åº“å¥æŸ„
     dbaddrs.push_back(*(DWORD *)(SqlHandleFavoriteAddr + 0x8));
 
-    // »ñÈ¡Êı¾İ¿âĞÅÏ¢
+    // è·å–æ•°æ®åº“ä¿¡æ¯
     for (auto dbaddr : dbaddrs)
     {
         wstring dbname = wstring((wchar_t *)(*(DWORD *)(dbaddr + 0x50)));
@@ -144,7 +144,7 @@ vector<void *> GetDbHandles()
         dbmap[dbname] = db;
     }
 
-    // Ìí¼ÓÒ»¸ö¿Õ½á¹¹Ìå£¬×÷Îª¶ÁÈ¡½áÊø±êÖ¾
+    // æ·»åŠ ä¸€ä¸ªç©ºç»“æ„ä½“ï¼Œä½œä¸ºè¯»å–ç»“æŸæ ‡å¿—
     DbInfoStruct db_end = {0};
     dbs.push_back(db_end);
 #ifdef _DEBUG
@@ -164,6 +164,6 @@ vector<void *> GetDbHandles()
 #endif
     vector<void *> ret_array;
     for (unsigned int i = 0; i < dbs.size() - 1; i++)
-        ret_array.push_back(&dbs[i]);
+       ret_array.push_back(&dbs[i]);
     return ret_array;
 }
